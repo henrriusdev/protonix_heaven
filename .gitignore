@@ -1,0 +1,4 @@
+vendor/
+output.css
+.env
+.env.*

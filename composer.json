@@ -1,0 +1,22 @@
+{
+    "name": "henrrius/protonix_heaven_project",
+    "description": "A Tech Store Project",
+    "type": "project",
+    "require": {
+        "doctrine/dbal": "^4.3",
+        "bramus/router": "^1.6",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Henrry",
+            "email": "henrrybrgt@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ProtonixHeaven\\": "src/"
+        }
+    }
+}
