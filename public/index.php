@@ -3,6 +3,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Bramus\Router\Router;
 use Dotenv\Dotenv; // <-- Importa la clase
+use ProtonixHeaven\Controller\DashboardController;
 use ProtonixHeaven\Controller\HomeController;
 use ProtonixHeaven\Controller\LoginController; // Import the LoginController
 
@@ -15,12 +16,14 @@ session_start();
 $router = new Router();
 $homeController = new HomeController();
 $loginController = new LoginController();
+$dashboardController = new DashboardController();
 
 // 3. Definición de rutas
 $router->get('/', [$homeController, 'index']);
 $router->get('/about', [$homeController, 'about']);
 $router->get('/login', [$loginController, 'loginForm']);
 $router->post('/login', [$loginController, 'login']);
+$router->get('/dashboard', [$dashboardController, 'index']); 
 
 // 4. Ruta para 404 (Página no encontrada)
 $router->set404(function () {

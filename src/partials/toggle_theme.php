@@ -1,0 +1,1 @@
+<button id="theme-toggle" aria-label="Toggle dark mode" class="rounded-full bg-primary-600 text-white w-10 px-2 py-2 cursor-pointer flex items-center justify-center"></button>
