@@ -10,17 +10,6 @@ class ItemVariant extends Base
     protected ?float $price = null;
     protected ?float $stock = null;
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function setId(?string $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
-
     public function getItemId(): ?string
     {
         return $this->itemId;
@@ -39,5 +28,29 @@ class ItemVariant extends Base
     public function getStock(): ?float
     {
         return $this->stock;
+    }
+
+    public function setItemId(?string $itemId): self
+    {
+        $this->itemId = $itemId;
+        return $this;
+    }
+
+    public function setVariantName(?string $variantName): self
+    {
+        $this->variantName = $variantName;
+        return $this;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    public function setStock(?float $stock): self
+    {
+        $this->stock = $stock;
+        return $this;
     }
 }

@@ -11,16 +11,6 @@ class Item extends Base
   protected ?float $price = null;
   protected float $stock = 0.0;
 
-  public function getId(): string
-  {
-    return $this->id;
-  }
-
-  public function setId(?string $id): self
-  {
-    $this->id = $id;
-    return $this;
-  }
 
   public function getName(): ?string
   {
@@ -31,6 +21,7 @@ class Item extends Base
   {
     return $this->description;
   }
+
   public function getPrice(): ?float
   {
     return $this->price;
@@ -39,5 +30,28 @@ class Item extends Base
   public function getStock(): float
   {
     return $this->stock;
+  }
+
+  public function setName(?string $name): self
+  {
+    $this->name = $name;
+    return $this;
+  }
+
+  public function setDescription(?string $description): self
+  {
+    $this->description = $description;
+    return $this;
+  }
+
+  public function setPrice(?float $price): self
+  {
+    $this->price = $price;
+    return $this;
+  }
+  public function setStock(float $stock): self
+  {
+    $this->stock = $stock;
+    return $this;
   }
 }

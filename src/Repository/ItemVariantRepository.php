@@ -4,6 +4,7 @@ namespace ProtonixHeaven\Repository;
 
 use ProtonixHeaven\Repository\Filters\QueryFilters;
 use ProtonixHeaven\Repository\BaseRepository;
+use ProtonixHeaven\Model\Entity\ItemVariant;
 
 /**
  * Item Variant Repository
@@ -16,6 +17,11 @@ class ItemVariantRepository extends BaseRepository
     return 'item_variants';
   }
 
+  protected function getEntityClass(): string
+  {
+    return ItemVariant::class;
+  }
+  
   /**
    * Find an item variant by its ID.
    * @param string $id

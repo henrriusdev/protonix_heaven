@@ -18,6 +18,8 @@ abstract class BaseRepository
    * Debe ser definido por la clase hija.
    */
   abstract protected function getTable(): string;
+  abstract protected function getEntityClass(): string;
+
 
   protected readonly Connection $db;
 
@@ -48,34 +50,40 @@ abstract class BaseRepository
   {
     $qb = $this->baseQuery();
     $qb = $this->applyFilters($qb, $filters);
+    $results = $qb->executeQuery()->fetchAllAssociative();
 
-    return $qb->executeQuery()->fetchAllAssociative();
+    $entityClass = $this->getEntityClass();
+    return array_map(fn($data) => $entityClass::fromArray($data), $results);
   }
 
   /**
-   * Gets a single record matching the filters.
+   * Gets a single record matching the filters, hydrated as an entity object.
    *
    * @param array<callable(QueryBuilder): QueryBuilder> $filters Array of QueryFilters Closures
-   * @return array<T>|null Null if not found
+   * @return T|null Null if not found
    */
-  public function getOne(array $filters = []): ?array
+  public function getOne(array $filters = []): ?object
   {
     $qb = $this->baseQuery();
     $qb = $this->applyFilters($qb, $filters);
     $qb->setMaxResults(1);
 
     $result = $qb->executeQuery()->fetchAssociative();
+    if ($result === false) {
+      return null;
+    }
 
-    return $result === false ? null : $result;
+    $entityClass = $this->getEntityClass();
+    return $entityClass::fromArray($result);
   }
 
   /**
-   * Gets a single record matching the ID (and verifies soft delete).
+   * Gets a single record matching the ID, hydrated as an entity object.
    *
    * @param string $id
-   * @return array|null Null if not found
+   * @return T|null Null if not found
    */
-  public function getOneById(string $id): ?array
+  public function getOneById(string $id): ?object
   {
     return $this->getOne([
       QueryFilters::is('id', $id)

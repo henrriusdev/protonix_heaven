@@ -3,6 +3,7 @@
 namespace ProtonixHeaven\Repository;
 
 use ProtonixHeaven\Repository\Filters\QueryFilters;
+use ProtonixHeaven\Model\Entity\Invoice;
 
 /**
  * Invoice Repository
@@ -14,6 +15,13 @@ class InvoiceRepository extends BaseRepository
   {
     return 'invoices';
   }
+
+  protected function getEntityClass(): string
+  {
+    $myclass = Invoice::class;
+    return Invoice::class;
+  }
+
   /**
    * Find invoice by id
    * @param string $id
